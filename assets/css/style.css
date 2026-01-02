@@ -1,0 +1,295 @@
+/* ===========================
+   Base Reset & Fonts
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #F5F5F5;
+  background: #0D1117;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===========================
+   Container & Layout
+=========================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===========================
+   Header & Navigation
+=========================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,17,23,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #1F6FEB33;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.logo-img {
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1F6FEB;
+}
+
+nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: #F5F5F5;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #1F6FEB;
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Hero Section
+=========================== */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 2;
+  padding: 0 24px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1 1 500px;
+  text-align: left;
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #1F6FEB, #3DB4FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  color: #A0A0A0;
+  margin-bottom: 32px;
+}
+
+.hero-text .button {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #1F6FEB;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero-text .button:hover {
+  background: #155FCC;
+  transform: translateY(-2px);
+}
+
+/* Logo */
+.hero-logo {
+  flex: 0 1 280px;
+  max-width: 280px;
+  height: 280px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.hero-logo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #1F6FEB;
+  box-shadow: 0 0 40px rgba(31,111,235,0.4);
+  z-index: 2;
+  position: relative;
+}
+
+/* Brain canvas */
+#brain-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ===========================
+   Sections
+=========================== */
+.section {
+  background: rgba(18,22,25,0.95);
+  border-radius: 24px;
+  padding: 80px 24px;
+  margin: 40px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+}
+
+.section.muted {
+  background: rgba(28,34,40,0.85);
+}
+
+.section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #F5F5F5;
+}
+
+.section p {
+  max-width: 750px;
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ===========================
+   Grid / Features
+=========================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 24px;
+}
+
+.feature-card {
+  background: #111622;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.feature-card h3 {
+  margin-bottom: 12px;
+  color: #1F6FEB;
+}
+
+.feature-card p {
+  color: #ccc;
+}
+
+/* ===========================
+   Notes & Disclaimers
+=========================== */
+.note {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #A0A0A0;
+}
+
+.footer {
+  border-top: 1px solid #1F6FEB33;
+  padding: 40px 24px;
+  font-size: 14px;
+  color: #A0A0A0;
+  text-align: center;
+}
+
+.footer .disclaimer {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* ===========================
+   Animated Gradient Background
+=========================== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(270deg, #0D1117, #1F6FEB, #121619);
+  background-size: 600% 600%;
+  z-index: -1;
+  animation: gradientShift 30s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 992px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-text {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 36px;
+  }
+  .section h2 {
+    font-size: 28px;
+  }
+  .hero-logo {
+    width: 200px;
+  }
+  .hero-text .button {
+    padding: 12px 24px;
+  }
+}
