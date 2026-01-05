@@ -1,0 +1,17 @@
+# =========================
+# Netlify configuration for SPA at root
+# =========================
+
+[build]
+  # Root folder is the publish folder
+  publish = "."
+
+  # Optional build command if you have one (remove if none)
+  # command = "npm run build"
+
+# Redirect all requests to index.html to handle SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
