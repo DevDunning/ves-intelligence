@@ -1,49 +1,85 @@
-// Reserved for future interactivity
-// Simple floating particles background for full site
-const bgCanvas = document.createElement('canvas');
-bgCanvas.id = 'bg-canvas';
-bgCanvas.style.position = 'fixed';
-bgCanvas.style.top = '0';
-bgCanvas.style.left = '0';
-bgCanvas.style.width = '100%';
-bgCanvas.style.height = '100%';
-bgCanvas.style.zIndex = '-2';
-bgCanvas.style.pointerEvents = 'none';
-document.body.appendChild(bgCanvas);
+// ==========================
+// Homepage Splash Control
+// ==========================
+if (
+  window.location.pathname.endsWith("index.html") ||
+  window.location.pathname === "/"
+) {
+  const splash = document.querySelector(".splash-screen");
 
-const ctx = bgCanvas.getContext('2d');
-let circles = [];
+  if (splash) {
+    // Lock scroll while splash is visible
+    document.body.style.overflow = "hidden";
 
-function resizeCanvas() {
-  bgCanvas.width = window.innerWidth;
-  bgCanvas.height = window.innerHeight;
+    // Ensure splash is centered and sized
+    const splashLogo = document.querySelector(".hero-logo img");
+    if (splashLogo) {
+      splashLogo.style.display = "block";
+      splashLogo.style.margin = "0 auto";
+      splashLogo.style.maxWidth = "150px";
+      splashLogo.style.height = "150px";
+    }
+
+    // Safety: ensure splash starts visible
+    splash.style.opacity = "1";
+
+    // Fade out and remove splash
+    setTimeout(() => {
+      splash.style.transition = "opacity 0.8s ease";
+      splash.style.opacity = "0";
+
+      splash.addEventListener(
+        "transitionend",
+        () => {
+          splash.remove();
+          document.body.style.overflow = "";
+        },
+        { once: true }
+      );
+    }, 1500);
+  }
 }
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
 
-for (let i = 0; i < 60; i++) {
-  circles.push({
-    x: Math.random() * bgCanvas.width,
-    y: Math.random() * bgCanvas.height,
-    r: Math.random() * 3 + 1,
-    dx: (Math.random() - 0.5) * 0.5,
-    dy: (Math.random() - 0.5) * 0.5,
-    alpha: Math.random() * 0.5 + 0.3
+// ==========================
+// Hero Logo Resize Across All Pages
+// ==========================
+document.addEventListener("DOMContentLoaded", () => {
+  const heroLogo = document.querySelector(".hero-logo img, .hero-logo-img");
+
+  if (heroLogo) {
+    // Increase logo size on all pages
+    heroLogo.style.maxWidth = "250px";
+    heroLogo.style.height = "auto";
+    heroLogo.style.display = "block";
+    heroLogo.style.margin = "0 auto";
+  }
+});
+
+// ==========================
+// Ves Wave Animated Background
+// ==========================
+const vesWave = document.querySelector(".ves-wave");
+
+if (vesWave) {
+  let hue = 0;
+  function animateWave() {
+    hue = (hue + 0.5) % 360;
+    vesWave.style.background = `linear-gradient(270deg, hsl(${hue}, 80%, 50%), hsl(${
+      (hue + 60) % 360
+    }, 80%, 50%))`;
+    requestAnimationFrame(animateWave);
+  }
+  animateWave();
+}
+
+// ==========================
+// Smooth Scroll for Nav Anchors
+// ==========================
+const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+navLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute("href"));
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   });
-}
-
-function animate() {
-  ctx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
-  circles.forEach(c => {
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.r, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(31,111,235,${c.alpha})`;
-    ctx.fill();
-    c.x += c.dx;
-    c.y += c.dy;
-    if(c.x < 0 || c.x > bgCanvas.width) c.dx *= -1;
-    if(c.y < 0 || c.y > bgCanvas.height) c.dy *= -1;
-  });
-  requestAnimationFrame(animate);
-}
-animate();
+});
