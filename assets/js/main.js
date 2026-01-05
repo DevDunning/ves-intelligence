@@ -11,7 +11,7 @@ if (
     // Lock scroll while splash is visible
     document.body.style.overflow = "hidden";
 
-    // Ensure splash is centered and sized
+    // Ensure splash logo is centered
     const splashLogo = document.querySelector(".hero-logo img");
     if (splashLogo) {
       splashLogo.style.display = "block";
@@ -20,14 +20,13 @@ if (
       splashLogo.style.height = "150px";
     }
 
-    // Safety: ensure splash starts visible
+    // Show splash initially
     splash.style.opacity = "1";
 
-    // Fade out and remove splash
+    // Fade out splash
     setTimeout(() => {
       splash.style.transition = "opacity 0.8s ease";
       splash.style.opacity = "0";
-
       splash.addEventListener(
         "transitionend",
         () => {
@@ -41,17 +40,25 @@ if (
 }
 
 // ==========================
-// Hero Logo Resize Across All Pages
+// DOMContent Loaded Setup
 // ==========================
 document.addEventListener("DOMContentLoaded", () => {
+  // Hero Logo Resize Across All Pages
   const heroLogo = document.querySelector(".hero-logo img, .hero-logo-img");
-
   if (heroLogo) {
-    // Increase logo size on all pages
     heroLogo.style.maxWidth = "250px";
     heroLogo.style.height = "auto";
     heroLogo.style.display = "block";
     heroLogo.style.margin = "0 auto";
+  }
+
+  // Hamburger Menu Toggle
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
   }
 });
 
@@ -59,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Ves Wave Animated Background
 // ==========================
 const vesWave = document.querySelector(".ves-wave");
-
 if (vesWave) {
   let hue = 0;
   function animateWave() {
@@ -75,8 +81,8 @@ if (vesWave) {
 // ==========================
 // Smooth Scroll for Nav Anchors
 // ==========================
-const navLinks = document.querySelectorAll('header nav a[href^="#"]');
-navLinks.forEach((link) => {
+const anchorLinks = document.querySelectorAll('header nav a[href^="#"]');
+anchorLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute("href"));
